@@ -57,7 +57,7 @@ const translations = {
       video: {
         title: 'Meet Our Team',
       },
-      description: 'We are **UI-Topic**, a team that simplifies inventory management for gastronomic businesses to maximize their profits.',
+      description: 'We are UI-Topic, a team that simplifies inventory management for gastronomic businesses to maximize their profits.',
       cards: {
         help: {
           title: 'How We Help',

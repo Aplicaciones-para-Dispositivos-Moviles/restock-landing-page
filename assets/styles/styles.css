@@ -20,12 +20,18 @@ html {
   
   .hero-text {
     flex: 1;
+    animation: fadeInLeft 1s ease-out;
   }
-  
+
   .hero-text h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 2.8rem;
     margin-bottom: 10px;
+    background: linear-gradient(135deg, #2d5a3d 0%, #4f8a5b 50%, #6ba876 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 0.8s ease-out;
   }
   .subtitle {
     color: #4f8a5b;
@@ -41,18 +47,45 @@ html {
     margin-bottom: 30px;
   }
   .btn-start {
-    background-color: #4f8a5b;
+    background: linear-gradient(135deg, #4f8a5b 0%, #3b7047 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 15px 35px;
     font-weight: bold;
-    border-radius: 4px;
+    font-size: 1.1rem;
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(79, 138, 91, 0.3),
+                0 4px 10px rgba(79, 138, 91, 0.2);
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  .btn-start::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .btn-start:hover::before {
+    left: 100%;
+  }
+
   .btn-start:hover {
-    background-color: #3b7047;
+    background: linear-gradient(135deg, #3b7047 0%, #2d5a3d 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(79, 138, 91, 0.4),
+                0 6px 15px rgba(79, 138, 91, 0.3);
+  }
+
+  .btn-start:active {
+    transform: translateY(-1px) scale(1.02);
   }
   
   .hero-image {
@@ -64,7 +97,16 @@ html {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: fadeInRight 1s ease-out;
+  }
+
+  .hero-image img:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2),
+                0 15px 35px rgba(0, 0, 0, 0.15);
   }
   
   
@@ -78,11 +120,19 @@ html {
     align-items: center;
     justify-content: space-between;
     font-family: 'Poppins', sans-serif;
-    background-color: #F4F4F4;
+    background-color: rgba(244, 244, 244, 0.95);
+    backdrop-filter: blur(10px);
     height: 64px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.06);
     font-size: 0.9rem;
     overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .navbar.scrolled {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12),
+                0 3px 12px rgba(0, 0, 0, 0.08);
   }
   
   .navbar__toggle {
@@ -234,11 +284,31 @@ html {
     border: 2px solid #4F8A5B;
     border-radius: 17px;
     padding: 1.5rem;
-    background-color: #fff;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s;
+    background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
+                0 5px 15px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     max-width: 355px;
     max-height: 370px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-us-cards .card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(79, 138, 91, 0.1) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease;
+  }
+
+  .about-us-cards .card:hover::before {
+    transform: scale(1);
   }
   
   .about-us-cards .card img {
@@ -248,7 +318,11 @@ html {
   }
   
   .about-us-cards .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(79, 138, 91, 0.15),
+                0 10px 25px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: #6ba876;
   }
   
   @media (max-width: 1120px) and (min-width: 880px) {
@@ -637,13 +711,34 @@ html {
   width: 300px;
   padding: 1.5rem;
   border-radius: 20px;
-  background-color: #fff;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
+              0 5px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4f8a5b, #6ba876, #4f8a5b);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover::after {
+  transform: scaleX(1);
 }
 
 .team-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(79, 138, 91, 0.15),
+              0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .profile-image img {
